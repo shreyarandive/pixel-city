@@ -12,6 +12,8 @@ import CoreLocation
 
 class MapVC: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var pullUpViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var pullUpView: UIView!
     
     var locationManager = CLLocationManager()
     let authorizationStatus = CLLocationManager.authorizationStatus()
@@ -30,6 +32,13 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
         doubleTap.numberOfTapsRequired = 2
         doubleTap.delegate = self
         mapView.addGestureRecognizer(doubleTap)
+    }
+    
+    func animateViewUp() {
+        pullUpViewHeightConstraint.constant = 300
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
+        }
     }
 
     @IBAction func mapBtnPressed(_ sender: Any) {
@@ -56,18 +65,6 @@ extension MapVC: MKMapViewDelegate {
         createAndSetCoordinateRegion(touchCoordinate: userLocationCoordinate)
     }
     
-    @objc func dropPin(_ sender: UITapGestureRecognizer) {
-        removePin()
-        
-        let touchPoint = sender.location(in: mapView)
-        let touchCoordinate = mapView.convert(touchPoint, toCoordinateFrom: mapView)
-        
-        let annotation = DropablePin(coordinate: touchCoordinate, identifier: "dropablePin")
-        mapView.addAnnotation(annotation)
-        
-        createAndSetCoordinateRegion(touchCoordinate: touchCoordinate)
-    }
-    
     func createAndSetCoordinateRegion(touchCoordinate: CLLocationCoordinate2D) {
         let userLocationCoordinateRegion = MKCoordinateRegion.init(center: touchCoordinate, latitudinalMeters: regionRadius * 2.0, longitudinalMeters: regionRadius * 2.0)
         mapView.setRegion(userLocationCoordinateRegion, animated: true)
@@ -77,6 +74,19 @@ extension MapVC: MKMapViewDelegate {
         for annotation in mapView.annotations {
             mapView.removeAnnotation(annotation)
         }
+    }
+    
+    @objc func dropPin(_ sender: UITapGestureRecognizer) {
+        removePin()
+        animateViewUp()
+        
+        let touchPoint = sender.location(in: mapView)
+        let touchCoordinate = mapView.convert(touchPoint, toCoordinateFrom: mapView)
+        
+        let annotation = DropablePin(coordinate: touchCoordinate, identifier: "dropablePin")
+        mapView.addAnnotation(annotation)
+        
+        createAndSetCoordinateRegion(touchCoordinate: touchCoordinate)
     }
 }
 
