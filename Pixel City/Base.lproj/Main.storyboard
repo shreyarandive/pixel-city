@@ -43,7 +43,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YYS-o8-uud">
-                                <rect key="frame" x="315" y="607" width="60" height="60"/>
+                                <rect key="frame" x="310" y="602" width="60" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="DDE-hG-1tj"/>
                                     <constraint firstAttribute="height" constant="60" id="hHd-SJ-w9g"/>
@@ -64,10 +64,10 @@
                             <constraint firstItem="FCD-vs-zB0" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="7tn-Sl-G9g"/>
                             <constraint firstItem="FCD-vs-zB0" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="GKP-1k-juS"/>
                             <constraint firstItem="cVb-62-Yxt" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="NyA-w8-QA3"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="YYS-o8-uud" secondAttribute="bottom" id="OgV-2I-bTF"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="YYS-o8-uud" secondAttribute="bottom" constant="5" id="OgV-2I-bTF"/>
                             <constraint firstItem="7y4-mP-TBS" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Qsm-0Y-nEy"/>
                             <constraint firstAttribute="trailing" secondItem="cVb-62-Yxt" secondAttribute="trailing" id="XlU-GT-g4z"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="YYS-o8-uud" secondAttribute="trailing" id="Zka-qB-gzw"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="YYS-o8-uud" secondAttribute="trailing" constant="5" id="Zka-qB-gzw"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="cVb-62-Yxt" secondAttribute="bottom" id="bqk-cx-dXb"/>
                             <constraint firstItem="7y4-mP-TBS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ceA-iz-h0X"/>
                             <constraint firstItem="FCD-vs-zB0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="dAF-xL-tjn"/>
