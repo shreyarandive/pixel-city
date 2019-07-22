@@ -24,6 +24,7 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
     var progressLabel: UILabel?
     var flowLayout = UICollectionViewFlowLayout()
     var collectionView: UICollectionView?
+    var previousLocation: CLLocation?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,17 +97,20 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
-    
-
     @IBAction func mapBtnPressed(_ sender: Any) {
         if authorizationStatus == .authorizedAlways || authorizationStatus == .authorizedWhenInUse {
-            centerMaponUserLocation()
+            centerMapOnUserLocation()
         }
     }
 }
 
 extension MapVC: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if previousLocation == nil {
+            previousLocation = locationManager.location
+            getLocationAddress(location: previousLocation!)
+        }
+        
         if annotation is MKUserLocation {
             return nil
         }
@@ -117,7 +121,7 @@ extension MapVC: MKMapViewDelegate {
         return pinAnnotation
     }
     
-    func centerMaponUserLocation() {
+    func centerMapOnUserLocation() {
         guard let userLocationCoordinate = locationManager.location?.coordinate else { return }
         createAndSetCoordinateRegion(touchCoordinate: userLocationCoordinate)
     }
@@ -145,11 +149,32 @@ extension MapVC: MKMapViewDelegate {
         
         let touchPoint = sender.location(in: mapView)
         let touchCoordinate = mapView.convert(touchPoint, toCoordinateFrom: mapView)
-        
+        createAndSetCoordinateRegion(touchCoordinate: touchCoordinate)
+
         let annotation = DropablePin(coordinate: touchCoordinate, identifier: "dropablePin")
         mapView.addAnnotation(annotation)
         
-        createAndSetCoordinateRegion(touchCoordinate: touchCoordinate)
+        let location = CLLocation.init(latitude: touchCoordinate.latitude, longitude: touchCoordinate.longitude)
+        if location.distance(from: previousLocation!) > 100 {
+            getLocationAddress(location: location)
+            previousLocation = location
+        }
+    }
+    
+    func getLocationAddress(location: CLLocation) {
+        let geocoder = CLGeocoder()
+        geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
+            if let _ = error { return }
+            guard let placemark = placemarks?.first else { return }
+            
+            let streetNumber = placemark.subThoroughfare ?? ""
+            let streetName = placemark.thoroughfare ?? ""
+            let city = placemark.locality ?? ""
+            
+            print(streetName)
+            print(streetNumber)
+            print(city)
+        }
     }
 }
 
@@ -163,7 +188,7 @@ extension MapVC: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        centerMaponUserLocation()
+        centerMapOnUserLocation()
     }
 }
 

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		35B4C85E22DEAED300333909 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B4C85D22DEAED300333909 /* PhotoCell.swift */; };
+		35B4C86022DF75CB00333909 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B4C85F22DF75CB00333909 /* Constants.swift */; };
 		35CA229B22DE4A9C001249E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CA229A22DE4A9C001249E0 /* AppDelegate.swift */; };
 		35CA229D22DE4A9C001249E0 /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CA229C22DE4A9C001249E0 /* MapVC.swift */; };
 		35CA22A022DE4A9C001249E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35CA229E22DE4A9C001249E0 /* Main.storyboard */; };
@@ -19,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		35B4C85D22DEAED300333909 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
+		35B4C85F22DF75CB00333909 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		35CA229722DE4A9C001249E0 /* Pixel City.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pixel City.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		35CA229A22DE4A9C001249E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		35CA229C22DE4A9C001249E0 /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 		35CA22AF22DE4AE0001249E0 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				35B4C85F22DF75CB00333909 /* Constants.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -248,6 +251,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35B4C86022DF75CB00333909 /* Constants.swift in Sources */,
 				35B4C85E22DEAED300333909 /* PhotoCell.swift in Sources */,
 				35CA229D22DE4A9C001249E0 /* MapVC.swift in Sources */,
 				35CA22B222DE6725001249E0 /* DropablePin.swift in Sources */,
